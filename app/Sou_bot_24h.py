@@ -1,6 +1,8 @@
 # 総力戦専用サーバのBot作成
 
 import text
+from server import server_thread
+
 import discord
 from discord import app_commands
 
@@ -289,4 +291,5 @@ async def username(interaction: discord.Interaction):
 
 # Botの起動
 # client.run(token)
+server_thread()
 client.run(os.getenv("TOKEN"))
