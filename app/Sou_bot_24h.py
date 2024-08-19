@@ -190,10 +190,8 @@ async def on_message(message):
         await message.channel.send(text.text_Q1)
         # 送信先のチャンネル取得
         channel = client.get_channel(id_step1)
-        # 以下はチャンネル名から指定する方法
-        # guild = message.guild  # メッセージが送信されたサーバーを取得
-        # channel = discord.utils.get(guild.channels, name="┣✅step1")
-        await channel.send(file=discord.File("Q1.jpg"))
+        file_path = os.path.join(os.path.dirname(__file__), "Q1.jpg")
+        await channel.send(file=discord.File(file_path))
 
     elif message.content == "デデデ" or message.content == "ででで" or message.content == "デデデ大王":
         await message.channel.send(text.text_step1_clear)
@@ -205,7 +203,8 @@ async def on_message(message):
         await message.channel.send(text.text_Q2)
         # 送信先のチャンネル取得
         channel = client.get_channel(id_step2)
-        await channel.send(file=discord.File("Q2.jpg"))
+        file_path = os.path.join(os.path.dirname(__file__), "Q2.jpg")
+        await channel.send(file=discord.File(file_path))
 
     elif message.content == "キーコン" or message.content == "きーこん":
         await message.channel.send(text.text_step2_clear)
@@ -216,8 +215,8 @@ async def on_message(message):
     elif message.content == "日":
         await message.channel.send(text.text_Q3)
         # 送信先のチャンネル取得
-        channel = client.get_channel(id_step3)
-        await channel.send(file=discord.File("Q3.jpg"))
+        file_path = os.path.join(os.path.dirname(__file__), "Q3.jpg")
+        await channel.send(file=discord.File(file_path))
 
     elif message.content == "スネーク" or message.content == "すねーく":
         await message.channel.send(text.text_step3_clear)
@@ -232,13 +231,15 @@ async def on_message(message):
         await message.channel.send(text.text_Q4_easy)
         # 送信先のチャンネル取得
         channel = client.get_channel(id_step4)
-        await channel.send(file=discord.File("Q4_easy.jpg"))
+        file_path = os.path.join(os.path.dirname(__file__), "Q4_easy.jpg")
+        await channel.send(file=discord.File(file_path))
 
     elif message.content == "ハード" or message.content == "はーど":
         await message.channel.send(text.text_Q4_hard)
         # 送信先のチャンネル取得
         channel = client.get_channel(id_step4)
-        await channel.send(file=discord.File("Q4_hard.jpg"))
+        file_path = os.path.join(os.path.dirname(__file__), "Q4_hard.jpg")
+        await channel.send(file=discord.File(file_path))
 
     elif (message.content == "ほし" or message.content == "星") and key == 0:
         await message.channel.send(text.text_step4_hoshi)
@@ -293,3 +294,4 @@ async def username(interaction: discord.Interaction):
 # client.run(token)
 server_thread()
 client.run(os.getenv("TOKEN"))
+print("Current working directory:", os.getcwd())
