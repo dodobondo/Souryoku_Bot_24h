@@ -270,12 +270,12 @@ menu_text = """**__管理者権限 ON/OFF__：**
 
 **__リセットする__：**
 総力戦プレイ中に獲得できるロール、テキストログをリセットする
-（※ボタンを押してから**処理完了まで2~5秒ほどかかります**）"""
+（※ボタンを押してから**処理完了まで、長いときは7秒ほどかかります**）"""
 
 
 @tree.command(name="control", description="自分のユーザー名を確認")
 async def username(interaction: discord.Interaction):
-    allowed_channel_id = 1274947450448379926  # コントロールチャンネルでしか使用不可
+    allowed_channel_id = 1275480203291922584  # コントロールチャンネルでしか使用不可
 
     if interaction.channel.id != allowed_channel_id:
         await interaction.response.send_message("このチャンネルではこのコマンドを使用できません。", ephemeral=True)
