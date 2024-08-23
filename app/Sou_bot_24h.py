@@ -131,10 +131,10 @@ async def on_button_click(inter: discord.Interaction):
         # 特定のチャンネルのメッセージを削除
         channel = guild.get_channel(id_sys)
         await channel.purge()  # チャンネルのメッセージを全削除
-        channel = guild.get_channel(id_gm)
-        await channel.purge()  # チャンネルのメッセージを全削除
-        channel = guild.get_channel(id_talk)
-        await channel.purge()  # チャンネルのメッセージを全削除
+        # channel = guild.get_channel(id_gm)
+        # await channel.purge()  # チャンネルのメッセージを全削除
+        # channel = guild.get_channel(id_talk)
+        # await channel.purge()  # チャンネルのメッセージを全削除
 
         await inter.followup.send("閲覧可能なチャンネルとテキストログを初期状態に戻しました。", ephemeral=True)
 
