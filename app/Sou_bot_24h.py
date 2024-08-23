@@ -177,9 +177,6 @@ async def on_message(message):
         role = discord.utils.get(guild.roles, name="説明")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
 
-    elif message.content == "会場":
-        await message.channel.send(text.text_room)
-
     elif message.content == "ゲーム開始":
         await message.channel.send(text.text_start)
         guild = message.guild  # メッセージが送信されたサーバーを取得
