@@ -218,6 +218,7 @@ async def on_message(message):
     elif message.content == "日" and key == 7:
         await message.channel.send(text.text_Q3)
         # 送信先のチャンネル取得
+        channel = client.get_channel(id_step3)  # 正しいチャンネルIDで初期化
         file_path = os.path.join(os.path.dirname(__file__), "Q3.jpg")
         await channel.send(file=discord.File(file_path))
         key = 8
