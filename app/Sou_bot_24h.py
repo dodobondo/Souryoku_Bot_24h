@@ -152,10 +152,10 @@ async def on_message(message):
     if message.content == "メッセージクリーン":
         channel = client.get_channel(id_sys)
         await channel.purge()  # チャンネルのメッセージを全削除
-        channel = client.get_channel(id_gm)
-        await channel.purge()  # チャンネルのメッセージを全削除
-        channel = client.get_channel(id_talk)
-        await channel.purge()  # チャンネルのメッセージを全削除
+        # channel = client.get_channel(id_gm)
+        # await channel.purge()  # チャンネルのメッセージを全削除
+        # channel = client.get_channel(id_talk)
+        # await channel.purge()  # チャンネルのメッセージを全削除
 
     elif message.content == "スタート":
         await message.channel.send(text.text_opening)
@@ -163,96 +163,107 @@ async def on_message(message):
         role = discord.utils.get(guild.roles, name="オープニング")  # 指定した名前のロールを取得
         # role = guild.get_role(1274370444811833505)
         await give_role(guild, role)  # ロール付与
-        key = 0
+        key = 1
 
-    elif message.content == "準備開始":
+    elif message.content == "準備開始" and key == 1:
         await message.channel.send(text.text_prepare)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="準備")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
+        key = 2
 
-    elif message.content == "準備完了":
+    elif message.content == "準備完了" and key == 2:
         await message.channel.send(text.text_explain)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="説明")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
+        key = 3
 
-    elif message.content == "ゲーム開始":
+    elif message.content == "ゲーム開始" and key == 3:
         await message.channel.send(text.text_start)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="step1")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
+        key = 4
 
-    elif message.content == "生":
+    elif message.content == "生" and key == 4:
         await message.channel.send(text.text_Q1)
         # 送信先のチャンネル取得
         channel = client.get_channel(id_step1)
         file_path = os.path.join(os.path.dirname(__file__), "Q1.jpg")
         await channel.send(file=discord.File(file_path))
+        key = 5
 
-    elif message.content == "デデデ" or message.content == "ででで" or message.content == "デデデ大王":
+    elif (message.content == "デデデ" or message.content == "ででで" or message.content == "デデデ大王") and key == 5:
         await message.channel.send(text.text_step1_clear)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="step2")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
+        key = 6
 
-    elif message.content == "一":
+    elif message.content == "一" and key == 6:
         await message.channel.send(text.text_Q2)
         # 送信先のチャンネル取得
         channel = client.get_channel(id_step2)
         file_path = os.path.join(os.path.dirname(__file__), "Q2.jpg")
         await channel.send(file=discord.File(file_path))
 
-    elif message.content == "キーコン" or message.content == "きーこん":
+    elif (message.content == "キーコン" or message.content == "きーこん") and key == 6:
         await message.channel.send(text.text_step2_clear)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="step3")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
+        key = 7
 
-    elif message.content == "日":
+    elif message.content == "日" and key == 7:
         await message.channel.send(text.text_Q3)
         # 送信先のチャンネル取得
         file_path = os.path.join(os.path.dirname(__file__), "Q3.jpg")
         await channel.send(file=discord.File(file_path))
+        key = 8
 
-    elif message.content == "スネーク" or message.content == "すねーく":
+    elif (message.content == "スネーク" or message.content == "すねーく") and key == 8:
         await message.channel.send(text.text_step3_clear)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="step4")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
+        key = 9
 
-    elif message.content == "力":
+    elif message.content == "力" and key == 9:
         await message.channel.send(text.text_Q4_choice)
+        key = 10
 
-    elif message.content == "イージー" or message.content == "いーじー":
+    elif (message.content == "イージー" or message.content == "いーじー") and key >= 10:
         await message.channel.send(text.text_Q4_easy)
         # 送信先のチャンネル取得
         channel = client.get_channel(id_step4)
         file_path = os.path.join(os.path.dirname(__file__), "Q4_easy.jpg")
         await channel.send(file=discord.File(file_path))
+        key=11
 
-    elif message.content == "ハード" or message.content == "はーど":
+    elif (message.content == "ハード" or message.content == "はーど")and key >= 10:
         await message.channel.send(text.text_Q4_hard)
         # 送信先のチャンネル取得
         channel = client.get_channel(id_step4)
         file_path = os.path.join(os.path.dirname(__file__), "Q4_hard.jpg")
         await channel.send(file=discord.File(file_path))
+        key=11
 
-    elif (message.content == "ほし" or message.content == "星") and key == 0:
+    elif (message.content == "ほし" or message.content == "星") and key == 11:
         await message.channel.send(text.text_step4_hoshi)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="step5")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
-        key = 1
+        key = 12
 
-    elif message.content == "グリーン" or message.content == "ぐりーん":
+    elif (message.content == "グリーン" or message.content == "ぐりーん")and key == 11:
         await message.channel.send(text.text_step4_green)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="step5")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
-        key = 1
+        key = 12
 
-    elif message.content == "星" and key == 1:
+    elif message.content == "星" and key == 12:
         await message.channel.send(text.text_step5_clear)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="clear")  # 指定した名前のロールを取得
