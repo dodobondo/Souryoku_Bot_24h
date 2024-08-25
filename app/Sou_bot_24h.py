@@ -248,23 +248,23 @@ async def on_message(message):
         channel = client.get_channel(id_step4)
         file_path = os.path.join(os.path.dirname(__file__), "Q4_hard.jpg")
         await channel.send(file=discord.File(file_path))
-        key=11
+        key=12
 
     elif (message.content == "ほし" or message.content == "星") and key == 11:
         await message.channel.send(text.text_step4_hoshi)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="step5")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
-        key = 12
+        key = 13
 
-    elif (message.content == "グリーン" or message.content == "ぐりーん")and key == 11:
+    elif (message.content == "グリーン" or message.content == "ぐりーん")and key == 12:
         await message.channel.send(text.text_step4_green)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="step5")  # 指定した名前のロールを取得
         await give_role(guild, role)  # ロール付与
-        key = 12
+        key = 13
 
-    elif message.content == "星" and key == 12:
+    elif message.content == "星" and key == 13:
         await message.channel.send(text.text_step5_clear)
         guild = message.guild  # メッセージが送信されたサーバーを取得
         role = discord.utils.get(guild.roles, name="clear")  # 指定した名前のロールを取得
